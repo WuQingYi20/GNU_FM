@@ -1,0 +1,25 @@
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy.io import wavfile
+
+# Read the wav file
+sample_rate, data = wavfile.read('ChinaFM.wav')
+
+# Get the first 1000 samples from each channel
+samples_i = data[:1000, 0]
+samples_q = data[:1000, 1]
+
+# Create a time array for plotting
+time = np.arange(1000) / sample_rate
+
+# Plot the I and Q data
+plt.figure()
+plt.subplot(2, 1, 1)
+plt.plot(time, samples_i)
+plt.title('I Data')
+plt.subplot(2, 1, 2)
+plt.plot(time, samples_q)
+plt.title('Q Data')
+plt.xlabel('Time (s)')
+plt.tight_layout()
+plt.show()
